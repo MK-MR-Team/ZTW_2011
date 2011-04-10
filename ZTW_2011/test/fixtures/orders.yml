@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  startTime: 2011-04-10 22:03:31
+  deliveryTime: 2011-04-10 22:03:31
+  finishTime: 2011-04-10 22:03:31
+  wasPaid: false
+
+two:
+  startTime: 2011-04-10 22:03:31
+  deliveryTime: 2011-04-10 22:03:31
+  finishTime: 2011-04-10 22:03:31
+  wasPaid: false

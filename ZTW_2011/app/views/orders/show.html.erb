@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Starttime:</b>
+  <%= @order.startTime %>
+</p>
+
+<p>
+  <b>Deliverytime:</b>
+  <%= @order.deliveryTime %>
+</p>
+
+<p>
+  <b>Finishtime:</b>
+  <%= @order.finishTime %>
+</p>
+
+<p>
+  <b>Waspaid:</b>
+  <%= @order.wasPaid %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

@@ -1,4 +1,6 @@
 ZTW2011::Application.routes.draw do
+    resources :orders, :pizzas, :recipes, :ingredients
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
