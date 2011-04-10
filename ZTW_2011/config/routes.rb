@@ -1,5 +1,9 @@
 ZTW2011::Application.routes.draw do
-    resources :orders, :pizzas, :recipes, :ingredients
+  resources :orders, :pizzas, :recipes, :ingredients
+  namespace "admin" do
+  end
+  match 'kontakt' => "root#kontakt"
+  root :to => "root#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
