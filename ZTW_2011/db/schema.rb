@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410200330) do
+ActiveRecord::Schema.define(:version => 20110416184709) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -26,17 +26,43 @@ ActiveRecord::Schema.define(:version => 20110410200330) do
     t.boolean  "wasPaid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "pizzas", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "recipe_id",  :default => 1, :null => false
+    t.integer  "order_id"
+  end
+
+  create_table "pizzas_ingredients", :id => false, :force => true do |t|
+    t.integer "pizza_id"
+    t.integer "ingredient_id"
   end
 
   create_table "recipes", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipes_ingredients", :id => false, :force => true do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login"
+    t.string   "password"
+    t.string   "surname"
+    t.string   "firstName"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

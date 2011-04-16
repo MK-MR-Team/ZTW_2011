@@ -1,5 +1,5 @@
 ZTW2011::Application.routes.draw do
-  resources :orders, :pizzas, :recipes, :ingredients
+  resources :orders, :pizzas, :recipes, :ingredients, :users
   namespace "admin" do
   end
   match 'kontakt' => "root#kontakt"
