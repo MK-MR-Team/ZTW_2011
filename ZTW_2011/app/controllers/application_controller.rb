@@ -1,8 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def user_logged?
+    session[:user_id] != nil
+  end
+
   def logged_user
-    if request == nil then return nil end
-    return request.session_options[:user]
+    user_id = session[:user_id]
+    User.find(user_id)
+  end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to :controller => "root", :action => "index"
   end
 end

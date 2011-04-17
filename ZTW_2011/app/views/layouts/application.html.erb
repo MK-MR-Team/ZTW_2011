@@ -7,15 +7,20 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <% if true %>
-         <%="Zaloguj się"%>
-         <% ApplicationController.new().logged_user  %>
-     <%else%>>
-        <%puts("Zalogowany: ")%>
-     <%end %>
-  <%= render "shared/menu" %> <!-- ta sciezka jest wzgledna do 'views' -->
+  <% if controller.user_logged?  %>
+    <%= "Zalogowany: " %>
+    <%= controller.logged_user.login %>
+    <%= link_to "Wyloguj się", "/logout" %>
+  <% else %>
+    <%= link_to "Zaloguj się", "/login"%>
+    <%= link_to "Zarejestruj się", new_user_path %>
+  <% end %>
+  
+  <%= render "shared/menu" %>
 
   <%= yield %>
+
+  
 
 </body>
 </html>
