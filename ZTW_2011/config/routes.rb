@@ -3,8 +3,7 @@ ZTW2011::Application.routes.draw do
   namespace "admin" do
   end
   match 'kontakt' => "root#kontakt"
-  match 'login' => 'login#index', :via => :get
-  match 'login' => 'login#login', :via => :post
+  match 'login' => 'login#index'
   match 'logout' => "root#logout"
   root :to => "root#index"
 
