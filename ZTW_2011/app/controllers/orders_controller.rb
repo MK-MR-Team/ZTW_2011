@@ -80,4 +80,13 @@ class OrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def fake_new
+      pizza1 = Recipe.find_by_name("Margherita").pizzas.build
+      pizza2 = Recipe.find_by_name("Funghi").pizzas.build
+      pizza3 = Recipe.find_by_name("Funghi").pizzas.build
+      pizza4 =Recipe.find_by_name("Capriciosa").pizzas.build
+    session[:pizzas] = [pizza1,pizza2,pizza3,pizza4]
+    @pizzas = session[:pizzas]
+  end
 end

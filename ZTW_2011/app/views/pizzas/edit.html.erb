@@ -1,6 +1,72 @@
-<h1>Editing pizza</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @pizza %> |
-<%= link_to 'Back', pizzas_path %>
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <h1><%= @pizza.recipe.name%></h1>
+      <h2>Add or remove ingredients</h2>
+    </td>
+    <td><strong><%= format_price(@pizza.price)%></strong></td>
+  </tr>
+  <tr>
+    <td>
+      <fieldset>
+        <legend>Base ingredients</legend>
+        <table width="100%">
+          <% Pizza.default_ingredients.each do |i|%>
+            <tr>
+              <td><%= i %></td>
+              <td></td>
+            </tr>
+          <% end %>
+          <% @pizza.recipe.ingredients.each do |i| %>
+            <tr>
+              <% if @pizza.all_ingredients.include?(i) then %>
+                <td><%= i.name %></td>
+                <td><%= link_to 'Remove', change_pizza_path(@index,i.id), :method => :put %></td>
+              <% else %>
+                <td><strike><%= i.name %></strike></td>
+                <td><%= link_to 'Restore', change_pizza_path(@index,i.id), :method => :put %></td>
+                <td></td>
+              <% end %>
+            </tr>
+          <% end -%>
+        </table>
+      </fieldset>
+    </td>
+    <td><%= format_price(@pizza.recipe.price) %></td>
+  </tr>
+</table>
+<% if @pizza.only_added_ingredients.any? then %>
+  <fieldset>
+    <legend>Additional ingredients</legend>
+    <table width="100%">
+      <% @pizza.only_added_ingredients.each do |i| %>
+        <tr>
+          <td><%= i.name %></td>
+          <td><%= link_to "Remove", change_pizza_path(@index,i.id), :method => :put %></td>
+          <td align = "right"><%= format_price(i.price) %></td>
+        </tr>
+      <% end -%>
+    </table>
+  </fieldset>
+<% end %>
+<% if @pizza.other_ingredients.any? then %>
+  <p>Ingredients possible to add:</p>
+  <% form_tag change_pizza_path(@index), :method => :post do %>
+    <!--%= select_tag "ingredient_id", options_from_collection_for_select(@pizza.other_ingredients, "id", "name") %-->
+    <table>
+      <% @pizza.other_ingredients.each do |i| %>
+        <tr>
+          <td>
+            <%= radio_button_tag :ingredient_id, i.id %>
+            <%=  label_tag i.name %>
+          </td>
+          <td>
+            <%= format_price(i.price) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= submit_tag "Add ingredient" %>
+  <% end %>
+<% end %>
+<p><%= link_to 'Back to order', fake_new_order_path %></p>

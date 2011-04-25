@@ -1,4 +1,6 @@
 ZTW2011::Application.routes.draw do
+  match 'orders/fake_new' => "orders#fake_new", :as => :fake_new_order
+  match 'pizzas/change/:id(/:ingredient_id)' => "pizzas#change", :as => :change_pizza, :via => [:put, :post]
   resources :orders, :pizzas, :recipes, :ingredients, :users
   namespace "admin" do
   end

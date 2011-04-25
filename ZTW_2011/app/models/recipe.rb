@@ -3,4 +3,9 @@ class Recipe < ActiveRecord::Base
   has_many :pizzas
 
   validates :name, :uniqueness => true
+
+  def other_ingredients
+    temp_ingredients = self.ingredients
+    Ingredient.all - temp_ingredients
+  end
 end

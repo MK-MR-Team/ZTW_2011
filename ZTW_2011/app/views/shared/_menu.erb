@@ -1,7 +1,7 @@
 <ul class="menu">
   <li><%= link_to "Strona główna", "/"%> </li>
-  <li><%= link_to "Menu", "/recipes" %> </li>
-  <li><%= link_to "Nowe zamówienie", "/orders/new" %> </li>
+  <li><%= link_to "Menu", recipes_path %> </li>
+  <li><%= link_to "Nowe zamówienie", new_order_path %> </li>
   <li><%= link_to "Kontakt", "/kontakt" %></li>
-  <%  %>
+  <li><%= link_to "Tymczasowe nowe zamowienie do testowania edycji pizzy", fake_new_order_path %></li>
 </ul>

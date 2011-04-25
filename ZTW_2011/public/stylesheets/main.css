@@ -5,3 +5,9 @@
 .menu li {
    display: inline;
 }
+fieldset {
+    width:300px
+}
+.left {
+    float:left
+}

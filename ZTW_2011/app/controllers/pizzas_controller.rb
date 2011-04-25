@@ -34,7 +34,10 @@ class PizzasController < ApplicationController
 
   # GET /pizzas/1/edit
   def edit
-    @pizza = Pizza.find(params[:id])
+    index = params[:id]
+    @index = index
+    @pizza = session[:pizzas][index.to_i]
+    redirect_to(fake_new_order_url) if @pizza.nil?
   end
 
   # POST /pizzas
@@ -56,7 +59,8 @@ class PizzasController < ApplicationController
   # PUT /pizzas/1
   # PUT /pizzas/1.xml
   def update
-    @pizza = Pizza.find(params[:id])
+    index = params[:id]
+    @pizza = session[:pizzas][index.to_i]
 
     respond_to do |format|
       if @pizza.update_attributes(params[:pizza])
@@ -80,4 +84,20 @@ class PizzasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def change
+    index = params[:id].to_i
+    pizza = session[:pizzas][index]
+    ingredient = Ingredient.find(params[:ingredient_id].to_i)
+    if pizza.ingredients.include?(ingredient) then
+      pizza.ingredients.delete(ingredient)
+      puts "deleting"
+    else
+      puts "adding"
+      pizza.ingredients << ingredient
+    end
+    session[:pizzas][index] = pizza
+    redirect_to edit_pizza_url(index)
+  end
+
 end
