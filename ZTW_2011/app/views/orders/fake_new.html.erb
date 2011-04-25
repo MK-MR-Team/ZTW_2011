@@ -1,0 +1,20 @@
+<p>jest to tymczasowa stronka, z ktorej mozna przejsc do edycji pojedynczej pizzy.
+po kazdym wejsciu czy powrocie na strone 4 dostepne pizze sa tworzone od nowa.
+</p>
+<div class="left">
+<table>
+<% index = 0 %>
+<% @pizzas.each do |pizza| %>
+  <tr>
+    <td><%= pizza.recipe.name %></td>
+    <td><%= format_price(pizza.price) %></td>
+    <td><%= link_to 'Edit', edit_pizza_path(index) %></td>
+    <td><%= link_to 'Destroy', '\\pizzas\\'+index.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% index+=1 %>
+<% end %>
+</table>
+</div>
+<div class="left" style="margin-left:20px;font-size: larger">
+  <%= link_to "Confirm order", confirm_order_path %>
+</div>

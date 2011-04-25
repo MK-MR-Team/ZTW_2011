@@ -1,0 +1,61 @@
+<h1>Order confirmation</h1>
+<%= form_for(@order) do |f| %>
+<div class="left">
+  <h2>Please specify order delivery data</h2>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :firstName %><br />
+      <%= f.text_field :firstName %>
+    </div>
+    <div class="field">
+      <%= f.label :surname %><br />
+      <%= f.text_field :surname %>
+    </div>
+    <div class="field">
+      <%= f.label :address %><br />
+      <%= f.text_field :address %>
+    </div>
+    <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.phone_field :phone %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email %>
+    </div>
+</div>
+<div class="left" style="margin-left: 50px">
+  <h2>My order</h2>
+  <table>
+    <% @order.pizzas.each do |p| %>
+    <tr>
+      <td><%= p.recipe.name %></td>
+      <td><%= format_price(p.price) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><hr /></td>
+    </tr>
+    <tr>
+      <td>Total:</td>
+      <td><%= format_price(@order.price) %></td>
+    </tr>
+  </table>
+</div>
+<div class="left" style="margin-left: 50px">
+    <div class="actions">
+      <%= f.submit :value => "Confirm order"%>
+    </div>
+  <% end %>
+</div>
