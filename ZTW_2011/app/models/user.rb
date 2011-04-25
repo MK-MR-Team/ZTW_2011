@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :surname, :length => 2..45
   validates :address, :length => 10..255
   validates :email, :length => {:maximum => 40}
-
   validates :phone, :length => {:maximum => 20}
  
 end

@@ -41,15 +41,15 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     @order = Order.new(params[:order])
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
+    @order.pizzas = session[:pizzas]
+    @order.user = logged_user if user_logged?
+    if @order.save
+       puts @order.inspect
+       puts @order.pizzas.inspect
+       session[:pizzas] = nil
+       redirect_to(:user_orders)
+    else
+      render :action => "confirm"
     end
   end
 
@@ -82,11 +82,40 @@ class OrdersController < ApplicationController
   end
 
   def fake_new
-      pizza1 = Recipe.find_by_name("Margherita").pizzas.build
-      pizza2 = Recipe.find_by_name("Funghi").pizzas.build
-      pizza3 = Recipe.find_by_name("Funghi").pizzas.build
-      pizza4 =Recipe.find_by_name("Capriciosa").pizzas.build
+    pizza1 = Recipe.find_by_name("Margherita").pizzas.build
+    pizza2 = Recipe.find_by_name("Funghi").pizzas.build
+    pizza3 = Recipe.find_by_name("Funghi").pizzas.build
+    pizza4 = Recipe.find_by_name("Capriciosa").pizzas.build
+    pizza3.ingredients << Ingredient.find_by_name("corn")
     session[:pizzas] = [pizza1,pizza2,pizza3,pizza4]
     @pizzas = session[:pizzas]
+  end
+
+  def confirm
+    @order = Order.new
+    if user_logged? then
+      rewrite_user_data_to_order
+    end
+    @pizzas = session[:pizzas]
+    @order.pizzas = @pizzas
+  end
+
+  def user_orders
+    @user_logged = user_logged?
+    if @user_logged then
+      @orders = Order.where(:user_id => session[:user_id])
+      puts @orders.inspect
+    end
+  end
+
+  private
+
+  def rewrite_user_data_to_order
+    user = logged_user
+    @order.firstName = user.firstName
+    @order.surname = user.surname
+    @order.address = user.address
+    @order.phone = user.phone
+    @order.email = user.email
   end
 end

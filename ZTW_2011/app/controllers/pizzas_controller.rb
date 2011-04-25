@@ -91,9 +91,7 @@ class PizzasController < ApplicationController
     ingredient = Ingredient.find(params[:ingredient_id].to_i)
     if pizza.ingredients.include?(ingredient) then
       pizza.ingredients.delete(ingredient)
-      puts "deleting"
     else
-      puts "adding"
       pizza.ingredients << ingredient
     end
     session[:pizzas][index] = pizza
