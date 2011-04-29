@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 	@menu_link_controller = 'orders'
 	@menu_link_action = 'new'
 	if params[:command] != nil then
-		if params[:command] == 'Clear' then
+		if params[:command] == 'clear' then
 			session[:pizzas] = nil
 		end
 	end
