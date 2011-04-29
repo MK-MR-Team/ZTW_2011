@@ -1,13 +1,109 @@
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+
 .menu {
+	display: inline;
     text-align: center;
     list-style-type: none
 }
 .menu li {
    display: inline;
 }
-fieldset {
-    width:300px
+
+body,html{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	background-color: LightYellow;
 }
-.left {
-    float:left
+
+div#main{
+	height: 100%;
 }
+
+#content_wrapper{
+	width: 800px;
+	min-height: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: PaleGoldenrod;
+	overflow: auto;
+}
+
+#content{
+	width: 780px;
+	height: 100%;
+	background-color: PaleGoldenrod;
+	padding: 10px 10px 10px 10px;
+	overflow: inherit;
+}
+
+#header{
+	height: 50px;
+	width: 100%;
+	background-color: #FFCC33;
+}
+
+#footer{
+	height: 50px;
+	width: 100%;
+	background-color: #FFCC33;
+}
+
+#header_line{
+	background-color: black;
+	width: 100%;
+	height: 2px;
+	bottom: 0px;
+}
+
+#footer_line{
+	background-color: black;
+	width: 100%;
+	height: 2px;
+}
+
+.section{
+	background-color: Khaki;
+	border: 1px solid DarkKhaki;
+	padding: 0px 10px 10px 10px;
+	margin: 5px;
+}
+
+ul.highlighted_list{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.highlighted_list :hover{
+	background-color: #CC9933;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;	
+}
+
+input[type = submit] {
+border:none;
+background-color: transparent;
+padding: 0;
+margin: 0;
+cursor: pointer;
+}
+
+input[type = submit]:hover{
+	text-decoration: underline;	
+}
+

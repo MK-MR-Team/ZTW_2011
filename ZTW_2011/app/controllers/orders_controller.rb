@@ -24,12 +24,21 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.xml
   def new
-    @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
-    end
+	@menu_link_text = 'Dodaj'
+	@menu_link_controller = 'orders'
+	@menu_link_action = 'new'
+	if params[:command] != nil then
+		if params[:command] == 'Clear' then
+			session[:pizzas] = nil
+		end
+	end
+	session[:pizzas] = session[:pizzas] != nil ? session[:pizzas] : []
+	if params[:recipe_id] != nil then
+		recipe = Recipe.find_by_id(params[:recipe_id])
+		pizza = recipe.pizzas.build
+		session[:pizzas] << pizza
+	end
+    @pizzas = session[:pizzas]
   end
 
   # GET /orders/1/edit

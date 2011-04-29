@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  $recipies = Recipe.all
+
   def user_logged?
     session[:user_id] != nil
   end

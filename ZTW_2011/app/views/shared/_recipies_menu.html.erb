@@ -1,0 +1,27 @@
+<h2>Menu</h2>
+<ul class="highlighted_list">
+	<% $recipies.each do |recipe| %>
+	<li>
+		<%= form_tag({:controller => @menu_link_controller, :action => @menu_link_action}) do %>
+			<table style="width: 100%">
+				<tbody>
+				
+					<tr>
+						<td style="font-weight: bold; font-size: 14px;"><%= recipe.name %></td>
+						<td rowspan="2"><%= hidden_field_tag(:recipe_id, recipe.id) %></td>
+					</tr>
+					<tr>
+						<td style="font-style: italic; font-size: 11px; width: 60%;"> <b>Składniki:</b>
+						<% recipe.ingredients.each do |ingredient| %>
+							<%= ingredient.name %>,
+						<% end %>
+						</td>
+						<td id="price" style="width: 20%;"><%= recipe.price %> zł</td>
+						<td id="links" style="padding-left: 10px;  width: 20%;"> <small> <%= submit_tag(@menu_link_text) %> </small></td>
+					</tr>
+				</tbody>
+			</table>
+		<% end %>
+	</li>
+	<% end %>
+</ul>

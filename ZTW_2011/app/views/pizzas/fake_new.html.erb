@@ -1,0 +1,52 @@
+<h1>Pizza composer</h1>
+<div class="section" style="width: 29%; height: 80%; float: left">
+	<h2>Recipies</h2><%= @index %>
+	<form action="" method="post">
+		<ul class="highlighted_list">
+				<% @recipies_all.each do |recipe| %>
+					<li>
+						<%= radio_button_tag('recipe_id', recipe.id) %>
+						<b><%= recipe.name %></b>
+						<div style="font-style: italic; font-size: 11px;">
+						<% recipe.ingredients.each do |ingredient| %>
+							<%= ingredient.name %>,
+						<% end %>
+						</div>
+					</li>
+				<% end %>
+		</ul>
+		<%= submit_tag "Add ingredient" %>
+	</form>
+</div>
+<div class="section" style="width: 29%; height: 80%;  float: left">
+	<h2>Current pizza</h2>
+	<div>
+		<h3>Base</h3>
+		<% if @ingredients_base != nil then %>
+			<% @ingredients_base.each do |ingredient| %>
+				<%= ingredient.name %><br/>
+			<% end %>
+		<% end %>
+	</div>
+	<div>
+		<h3>Additional ingredients</h3>
+		<% if @ingredients_additional != nil then %>
+			<% @ingredients_additional.each do |ingredient| %>
+				<%= ingredient.name %><br/>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<div class="section" style="width: 29%; height: 80%; float: left">
+	<h2>Ingredients</h2>
+	<form action="" method="post">
+		<ul class="highlighted_list">
+			<% @ingredients_all.each do |ingredient| %>
+				<li>
+					<%= check_box_tag('ingredients', ingredient.id)+ ingredient.name %>
+				</li>
+			<% end %>
+		</ul>
+		<%= submit_tag "Add ingredient" %>
+	</form>
+</div>

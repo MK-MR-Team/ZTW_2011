@@ -7,20 +7,26 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <% if controller.user_logged?  %>
-    <%= "Zalogowany: " %>
-    <%= controller.logged_user.login %>
-    <%= link_to "Wyloguj się", "/logout" %>
-  <% else %>
-    <%= link_to "Zaloguj się", "/login"%>
-    <%= link_to "Zarejestruj się", new_user_path %>
-  <% end %>
-  
-  <%= render "shared/menu" %>
-
-  <%= yield %>
-
-  
-
+		<div id="header">
+			<% if controller.user_logged?  %>
+				<%= "Zalogowany: " %>
+				<%= controller.logged_user.login %>
+				<%= link_to "Wyloguj się", "/logout" %>
+			<% else %>
+				<%= link_to "Zaloguj się", "/login"%>
+				<%= link_to "Zarejestruj się", new_user_path %>
+			<% end %>
+			<%= render "shared/menu" %>
+		</div>
+		<div id="header_line"/></div>
+		<div id="content_wrapper">
+			<div id="content">
+				<%= yield %>
+				
+			</div>
+		</div>
+		<div id="footer">
+			<div id="footer_line"/></div>
+		</div>
 </body>
 </html>
