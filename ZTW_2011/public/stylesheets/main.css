@@ -6,9 +6,9 @@ body, p, ol, ul, td {
 
 
 .menu {
-	display: inline;
     text-align: center;
-    list-style-type: none
+    list-style-type: none;
+    margin:0px 20px 10px
 }
 .menu li {
    display: inline;

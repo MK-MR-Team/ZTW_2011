@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.xml
   def new
-	@menu_link_text = 'Dodaj'
+	@menu_link_text = 'Add'
 	@menu_link_controller = 'orders'
 	@menu_link_action = 'new'
 	if params[:command] != nil then
@@ -53,8 +53,6 @@ class OrdersController < ApplicationController
     @order.pizzas = session[:pizzas]
     @order.user = logged_user if user_logged?
     if @order.save
-       puts @order.inspect
-       puts @order.pizzas.inspect
        session[:pizzas] = nil
        redirect_to(:user_orders)
     else
@@ -90,22 +88,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  def fake_new
-    pizza1 = Recipe.find_by_name("Margherita").pizzas.build
-    pizza2 = Recipe.find_by_name("Funghi").pizzas.build
-    pizza3 = Recipe.find_by_name("Funghi").pizzas.build
-    pizza4 = Recipe.find_by_name("Capriciosa").pizzas.build
-    pizza3.ingredients << Ingredient.find_by_name("corn")
-    session[:pizzas] = [pizza1,pizza2,pizza3,pizza4]
-    @pizzas = session[:pizzas]
-  end
-
   def confirm
+    @pizzas = session[:pizzas]
+    if @pizzas.nil? || @pizzas.empty? then
+      redirect_to(new_order_url, :command => "clear") and return
+    end
     @order = Order.new
     if user_logged? then
       rewrite_user_data_to_order
     end
-    @pizzas = session[:pizzas]
     @order.pizzas = @pizzas
   end
 
@@ -113,7 +104,6 @@ class OrdersController < ApplicationController
     @user_logged = user_logged?
     if @user_logged then
       @orders = Order.where(:user_id => session[:user_id])
-      puts @orders.inspect
     end
   end
 

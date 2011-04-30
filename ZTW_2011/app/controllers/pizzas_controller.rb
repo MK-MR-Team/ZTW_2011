@@ -3,11 +3,13 @@ class PizzasController < ApplicationController
   # GET /pizzas.xml
   def index
     @pizzas = Pizza.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @pizzas }
-    end
+    @recipies_all = $recipies
+    @ingredients_all = Ingredient.all
+    render "fake_new"
+  #  respond_to do |format|
+  #    format.html "fake_new"# index.html.erb
+  #    format.xml  { render :xml => @pizzas }
+  #  end
   end
 
   # GET /pizzas/1
@@ -34,10 +36,9 @@ class PizzasController < ApplicationController
 
   # GET /pizzas/1/edit
   def edit
-    index = params[:id]
-    @index = index
-    @pizza = session[:pizzas][index.to_i]
-    redirect_to(fake_new_order_url) if @pizza.nil?
+    @index = params[:id]
+    @pizza = get_pizza_from_session
+    redirect_to(new_order_url) if @pizza.nil?
   end
 
   # POST /pizzas
@@ -76,13 +77,8 @@ class PizzasController < ApplicationController
   # DELETE /pizzas/1
   # DELETE /pizzas/1.xml
   def destroy
-    @pizza = Pizza.find(params[:id])
-    @pizza.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(pizzas_url) }
-      format.xml  { head :ok }
-    end
+    session[:pizzas].delete(get_pizza_from_session)
+    redirect_to(new_order_url)
   end
 
   def change
@@ -96,6 +92,12 @@ class PizzasController < ApplicationController
     end
     session[:pizzas][index] = pizza
     redirect_to edit_pizza_url(index)
+  end
+
+  private
+
+  def get_pizza_from_session
+    session[:pizzas][params[:id].to_i]
   end
 
 end

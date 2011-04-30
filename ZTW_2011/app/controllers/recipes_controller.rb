@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.xml
   def index
-	@menu_link_text = 'Zamów'
+	@menu_link_text = 'Order'
 	@menu_link_controller = 'orders'
 	@menu_link_action = 'new'
     respond_to do |format|

@@ -1,19 +1,23 @@
-<h1>Order confirmation</h1>
 <%= form_for(@order) do |f| %>
-<div class="left">
-  <h2>Please specify order delivery data</h2>
-    <% if @order.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-        <ul>
-          <% @order.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+<div>
+<h1 style="display:inline">Order confirmation</h1>
+<p style="float:right">
+  <%= link_to "Back to choose pizzas", :back , :style => "font-size:15px"%>
+  <%= f.submit :value => "Confirm order", :style => "font-size:16px"%>
+</p>
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+</div>
+  <div style="float:left; width:350px">
+    <h2>Please specify order delivery data</h2>
     <div class="field">
       <%= f.label :firstName %><br />
       <%= f.text_field :firstName %>
@@ -34,28 +38,23 @@
       <%= f.label :email %><br />
       <%= f.email_field :email %>
     </div>
-</div>
-<div class="left" style="margin-left: 50px">
-  <h2>My order</h2>
-  <table>
-    <% @order.pizzas.each do |p| %>
-    <tr>
-      <td><%= p.recipe.name %></td>
-      <td><%= format_price(p.price) %></td>
-    </tr>
-    <% end %>
-    <tr>
-      <td colspan="2"><hr /></td>
-    </tr>
-    <tr>
-      <td>Total:</td>
-      <td><%= format_price(@order.price) %></td>
-    </tr>
-  </table>
-</div>
-<div class="left" style="margin-left: 50px">
-    <div class="actions">
-      <%= f.submit :value => "Confirm order"%>
-    </div>
-  <% end %>
-</div>
+  </div>
+  <div class="section" style="margin-left: 50px; float:right; width:350px">
+    <h2>My order</h2>
+    <table width="100%">
+      <% @order.pizzas.each do |p| %>
+        <tr>
+          <td><%= p.recipe.name %></td>
+          <td align="right"><%= format_price(p.price) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="2"><hr /></td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td align="right"><%= format_price(@order.price) %></td>
+      </tr>
+    </table>
+  </div>
+<% end %>

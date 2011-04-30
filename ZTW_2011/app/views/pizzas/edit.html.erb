@@ -1,11 +1,7 @@
-<table cellpadding="0" cellspacing="0">
-  <tr>
-    <td>
       <h1><%= @pizza.recipe.name%></h1>
       <h2>Add or remove ingredients</h2>
-    </td>
-    <td><strong><%= format_price(@pizza.price)%></strong></td>
-  </tr>
+    <h3><strong><%= format_price(@pizza.price)%></strong></h3     >
+<table cellpadding="0" cellspacing="0" style="float:left" width="50%" >
   <tr>
     <td>
       <fieldset>
@@ -31,11 +27,13 @@
           <% end -%>
         </table>
       </fieldset>
+      
     </td>
     <td><%= format_price(@pizza.recipe.price) %></td>
   </tr>
-</table>
 <% if @pizza.only_added_ingredients.any? then %>
+<tr>
+  <td>
   <fieldset>
     <legend>Additional ingredients</legend>
     <table width="100%">
@@ -47,13 +45,15 @@
         </tr>
       <% end -%>
     </table>
-  </fieldset>
+  </fieldset></td><td></td></tr>
 <% end %>
+</table>
 <% if @pizza.other_ingredients.any? then %>
+<div class="section" style="float:right" width="40%">
   <p>Ingredients possible to add:</p>
   <% form_tag change_pizza_path(@index), :method => :post do %>
     <!--%= select_tag "ingredient_id", options_from_collection_for_select(@pizza.other_ingredients, "id", "name") %-->
-    <table>
+    <table width="100%">
       <% @pizza.other_ingredients.each do |i| %>
         <tr>
           <td>
@@ -68,5 +68,6 @@
     </table>
     <%= submit_tag "Add ingredient" %>
   <% end %>
+</div>
 <% end %>
-<p><%= link_to 'Back to order', fake_new_order_path %></p>
+<div style="clear:both"><%= link_to 'Back to order', new_order_path %></div>

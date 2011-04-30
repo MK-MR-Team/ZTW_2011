@@ -19,13 +19,14 @@
 							<td rowspan="2"></td>
 						</tr>
 						<tr>
-							<td style="font-style: italic; font-size: 11px; width: 60%;"> <b>Składniki:</b>
-							<% pizza.recipe.ingredients.each do |ingredient| %>
-								<%= ingredient.name %>,
+							<td style="font-style: italic; font-size: 11px; width: 60%;"> <b>Ingredients:</b>
+                                                        <%= Pizza.default_ingredients[0]+', '+Pizza.default_ingredients[1] +','-%>
+							<% pizza.all_ingredients.each do |ingredient| %>
+								<%= ingredient.name%>,
 							<% end %>
 							</td>
-							<td id="price" style="width: 20%;"><%= format_price(pizza.price) %> zł</td>
-							<td id="links" style="padding-left: 10px;  width: 20%;"> <small> <%= link_to 'Edit', edit_pizza_path(index) %> <%= link_to 'Destroy', '\\pizzas\\'+index.to_s, :confirm => 'Are you sure?', :method => :delete %> </small></td>
+							<td id="price" style="width: 20%;"><%= format_price(pizza.price) %></td>
+							<td id="links" style="padding-left: 10px;  width: 20%;"> <small> <%= link_to 'Edit', edit_pizza_path(index) %> <%= link_to 'Remove', '\\pizzas\\'+index.to_s, :confirm => 'Are you sure?', :method => :delete %> </small></td>
 						</tr>
 				
 					</tbody>

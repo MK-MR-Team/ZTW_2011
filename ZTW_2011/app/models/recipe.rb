@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
   has_many :pizzas
 
   validates :name, :uniqueness => true
+  validates :price, :presence => true
 
   def other_ingredients
     temp_ingredients = self.ingredients

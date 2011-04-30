@@ -1,0 +1,11 @@
+<div class="menu" style="text-align: right">
+  <% if controller.user_logged?  %>
+    <%= "Logged: " %>
+    <%= controller.logged_user.login %>
+    <%= link_to "Logout", "/logout" %>
+    <%= link_to "My orders", user_orders_path %>
+  <% else %>
+    <%= link_to "Login", "/login"%>
+    <%= link_to "Register", new_user_path %>
+  <% end %>
+</div>
