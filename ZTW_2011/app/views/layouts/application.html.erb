@@ -8,20 +8,21 @@
 </head>
 <body>
 		<div id="header">
-                        <%= render "shared/login_bar" %>
-			<%= render "shared/menu" %>
-                
+			<div id="header_content">
+				<%= render "shared/menu" %>
+			</div>
+			<%= render "shared/login_bar" %>
 		</div>
-                <div id="header_line"></div>
+		<div id="header_line"/></div>
 		<div id="content_wrapper">
 			<div id="content">
-				<%= yield %>
+			<%= yield %>
 				
 			</div>
 		</div>
+		<div id="footer_line"/></div>
 		<div id="footer">
-			<div id="footer_line"/>
-                </div>
-		
+			
+		</div>
 </body>
 </html>

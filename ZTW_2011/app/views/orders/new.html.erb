@@ -26,7 +26,7 @@
 							<% end %>
 							</td>
 							<td id="price" style="width: 20%;"><%= format_price(pizza.price) %></td>
-							<td id="links" style="padding-left: 10px;  width: 20%;"> <small> <%= link_to 'Edit', edit_pizza_path(index) %> <%= link_to 'Remove', '\\pizzas\\'+index.to_s, :confirm => 'Are you sure?', :method => :delete %> </small></td>
+							<td id="links" style="padding-left: 10px;  width: 20%;"> <small> <%= link_to 'Edit', edit_pizza_path(index) %> <%= link_to 'Remove', pizza_path(index.to_s), :confirm => 'Are you sure?', :method => :delete %> </small></td>
 						</tr>
 				
 					</tbody>
