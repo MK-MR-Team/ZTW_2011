@@ -17,10 +17,10 @@
             <tr>
               <% if @pizza.all_ingredients.include?(i) then %>
                 <td><%= i.name %></td>
-                <td><%= link_to 'Remove', change_pizza_path(@index,i.id), :method => :put %></td>
+                <td><%= link_to 'Remove', pizza_path(@index,:ingredient => i.id), :method => :put %></td>
               <% else %>
                 <td><strike><%= i.name %></strike></td>
-                <td><%= link_to 'Restore', change_pizza_path(@index,i.id), :method => :put %></td>
+                <td><%= link_to 'Restore', pizza_path(@index,:ingredient => i.id), :method => :put %></td>
                 <td></td>
               <% end %>
             </tr>
@@ -40,7 +40,7 @@
       <% @pizza.only_added_ingredients.each do |i| %>
         <tr>
           <td><%= i.name %></td>
-          <td><%= link_to "Remove", change_pizza_path(@index,i.id), :method => :put %></td>
+          <td><%= link_to "Remove", pizza_path(@index,:ingredient => i.id), :method => :put %></td>
           <td align = "right"><%= format_price(i.price) %></td>
         </tr>
       <% end -%>
@@ -51,14 +51,13 @@
 <% if @pizza.other_ingredients.any? then %>
 <div class="section" style="float:right" width="40%">
   <p>Ingredients possible to add:</p>
-  <% form_tag change_pizza_path(@index), :method => :post do %>
-    <!--%= select_tag "ingredient_id", options_from_collection_for_select(@pizza.other_ingredients, "id", "name") %-->
     <table width="100%">
       <% @pizza.other_ingredients.each do |i| %>
         <tr>
           <td>
-            <%= radio_button_tag :ingredient_id, i.id %>
-            <%=  label_tag i.name %>
+            <!--<%= radio_button_tag :ingredient_id, i.id %>
+            <%=  label_tag i.name %>-->
+            <%= link_to i.name, pizza_path(@index,:ingredient => i.id), :method => :put %>
           </td>
           <td>
             <%= format_price(i.price) %>
@@ -66,8 +65,6 @@
         </tr>
       <% end %>
     </table>
-    <%= submit_tag "Add ingredient" %>
-  <% end %>
 </div>
 <% end %>
 <div style="clear:both"><%= link_to 'Back to order', new_order_path %></div>

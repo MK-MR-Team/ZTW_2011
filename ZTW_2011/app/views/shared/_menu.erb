@@ -1,6 +1,6 @@
 <div class="menu">
 <%= link_to "Home", "/", :class => 'menu_link' %>
-<%= link_to "Menu", recipes_path, :class => 'menu_link' %>
-<%= link_to "New order", new_order_path+"?command=clear", :class => 'menu_link' %>
+<%= link_to "Menu", pizzas_path, :class => 'menu_link' %>
+<%= link_to "New order", new_order_path(:command => 'clear'), :class => 'menu_link' %>
 <%= link_to "Contact", "/kontakt", :class => 'menu_link' %>
 </div>
