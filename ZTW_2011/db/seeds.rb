@@ -19,3 +19,12 @@ funghi.ingredients << mushroom
 capriciosa = Recipe.create(:name => "Capriciosa", :price => 1450, :description => "One of the most popular pizzas in our menu, ham and pizza composition makes this piza not only look delicious, but also be tasty")
 capriciosa.ingredients << mushroom
 capriciosa.ingredients << ham
+User.create(
+  :login => "admin",
+  :password => "admin",
+  :password_confirmation => "admin",
+  :firstName => "Administrator",
+  :surname => "Pizzerii",
+  :address => "ul. Dluga St. 71, 53-045 Wroclaw",
+  :phone => "07112345678",
+  :admin => true)

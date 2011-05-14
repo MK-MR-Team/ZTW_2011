@@ -3,6 +3,7 @@
     <%= "Logged: " %>
     <%= controller.logged_user.login %>
     <%= link_to "Logout", "/logout" %>
+    <%= link_to "My profile", user_path %>
     <%= link_to "My orders", user_orders_path %>
   <% else %>
     <%= link_to "Login", "/login"%>

@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_many :orders
 
   validates :login, :uniqueness => true,
-                    :length => 6..45
-  validates :password, :length => 6..45,
+                    :length => 5..45
+  validates :password, :length => 5..45,
                        :confirmation => true
   validates :firstName, :length => 2..45
   validates :surname, :length => 2..45

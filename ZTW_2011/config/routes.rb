@@ -4,9 +4,13 @@ ZTW2011::Application.routes.draw do
   match 'orders/confirm' => "orders#confirm", :as => :confirm_order, :via => :get
   match 'orders/my' => "orders#user_orders", :as => :user_orders
   match 'pizzas/change/:id(/:ingredient_id)' => "pizzas#change", :as => :change_pizza, :via => [:put, :post]
-  resources :orders, :pizzas, :recipes, :ingredients, :users
+  match 'admin/' => "admin#index"
+  resource :user
+  resources :orders, :pizzas, :recipes, :ingredients
   namespace "admin" do
+    resources :pizzas, :orders, :users
   end
+  match 'forbidden' => "root#forbidden", :as => :forbidden
   match 'kontakt' => "root#kontakt"
   match 'login' => 'login#index'
   match 'logout' => "root#logout"

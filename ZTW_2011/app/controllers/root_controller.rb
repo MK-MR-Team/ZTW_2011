@@ -1,10 +1,11 @@
 class RootController < ApplicationController
-  def index  
+  def index
   end
 
   def kontakt
   end
 
-  
-  
+  def forbidden
+  end
+
 end
