@@ -4,9 +4,9 @@ ZTW2011::Application.routes.draw do
   match 'admin/' => "admin#index"
   resource :user
   resources :pizzas, :only => [:index,:update,:edit,:destroy]
-  resources :orders, :ingredients
+  resources :orders
   namespace "admin" do
-    resources :pizzas,:recipes, :orders, :users
+    resources :ingredients, :pizzas, :recipes, :orders, :users
   end
   match 'forbidden' => "root#forbidden", :as => :forbidden
   match 'kontakt' => "root#kontakt"

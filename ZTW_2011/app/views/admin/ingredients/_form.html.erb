@@ -1,4 +1,4 @@
-<%= form_for(@ingredient) do |f| %>
+<%= form_for [:admin,@ingredient] do |f| %>
   <% if @ingredient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
