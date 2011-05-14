@@ -15,7 +15,7 @@ ZTW2011::Application.routes.draw do
   end
   match 'forbidden' => "root#forbidden", :as => :forbidden
   match 'kontakt' => "root#kontakt"
-  match 'login' => 'login#index'
+  match 'login' => 'root#login'
   match 'logout' => "root#logout"
   root :to => "root#index"
 
