@@ -1,10 +1,15 @@
 ZTW2011::Application.routes.draw do
-  match 'orders/confirm' => "orders#confirm", :as => :confirm_order, :via => :get
-  match 'orders/my' => "orders#user_orders", :as => :user_orders
   match 'admin/' => "admin#index"
   resource :user
   resources :pizzas, :only => [:index,:update,:edit,:destroy]
-  resources :orders
+  resources :orders, :only => [:index, :new, :show, :create] do
+    member do
+      post 'new'
+    end
+    collection do
+      get 'confirm'
+    end
+  end
   namespace "admin" do
     resources :ingredients, :pizzas, :recipes, :orders, :users
   end

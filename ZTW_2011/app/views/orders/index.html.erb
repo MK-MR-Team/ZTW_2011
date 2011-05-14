@@ -1,29 +1,11 @@
-<h1>Listing orders</h1>
-
-<table>
-  <tr>
-    <th>Starttime</th>
-    <th>Deliverytime</th>
-    <th>Finishtime</th>
-    <th>Waspaid</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.startTime %></td>
-    <td><%= order.deliveryTime %></td>
-    <td><%= order.finishTime %></td>
-    <td><%= order.wasPaid %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<h1>My orders</h1>
+<% if @user_logged then %>
+  <table>
+    <% @orders.each do |o| %>
+    <tr><td><%= o.created_at%></td></tr>
+    <% end %>
+    <tr><td>todo: wyswietlenie napisu obrazujacego stan zamowienia</td></tr>
+  </table>
+<% else %>
+<p>Login or register and you will be able to track the state of your orders on this site.</p>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Order', new_order_path %>
