@@ -18,6 +18,7 @@ class RootController < ApplicationController
         if (user.nil?) then @errors[:user] = "Incorrect credentials."
         else
           session[:user_id] = user.id
+		  redirect_to :controller => "admin", :action => "index" and return if logged_user.admin
           redirect_to :controller => "root", :action => "index"
         end
       else #login or password blank

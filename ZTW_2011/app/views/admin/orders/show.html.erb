@@ -1,0 +1,11 @@
+<div style="width: 30%; padding: 5px; float: left; border: 1px solid black">
+	<b>Pizzas</b>
+	<ul>
+	<% @order.pizzas.each do |pizza| %>
+		<li><%= pizza.recipe.name %></li>
+	<% end %>
+	</ul>
+</div>
+<div style="width: 30%; padding: 5px; float: left; border: 1px solid black">
+	<%= link_to('Zrealizowne', '/admin', :class => 'standard_button') %>
+</div>

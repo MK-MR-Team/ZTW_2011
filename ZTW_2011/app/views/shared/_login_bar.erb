@@ -1,12 +1,12 @@
-<div class="menu" style="text-align: right">
+<span>
   <% if controller.user_logged?  %>
     <%= "Logged: " %>
     <%= controller.logged_user.login %>
-    <%= link_to "Logout", "/logout" %>
-    <%= link_to "My profile", user_path %>
-    <%= link_to "My orders", orders_path %>
+    <%= link_to "Logout", "/logout", :class => 'menu_link' %>
+    <%= link_to "My profile", user_path, :class => 'menu_link' %>
+    <%= link_to "My orders", orders_path, :class => 'menu_link' %>
   <% else %>
-    <%= link_to "Login", "/login"%>
-    <%= link_to "Register", new_user_path %>
+    <%= link_to "Login", "/login", :class => 'menu_link'%>
+    <%= link_to "Register", new_user_path, :class => 'menu_link' %>
   <% end %>
-</div>
+</span>

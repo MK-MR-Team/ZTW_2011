@@ -28,3 +28,11 @@ User.create(
   :address => "ul. Dluga St. 71, 53-045 Wroclaw",
   :phone => "07112345678",
   :admin => true)
+order1 = Order.create(
+	:firstName  => 'Jacek',
+	:surname => 'Domek',
+	:address => 'Wrocław 23-324, ul. Kapajaka 12/12',
+	:email => 'asdas@wa.pl',
+	:phone => '432522634'
+)
+order1.pizzas << Recipe.pizzas.new

@@ -1,6 +1,27 @@
-<h1>Admin sites</h1>
-<ul style="list-style-type: none">
-  <li><%= link_to "Recipes", admin_recipes_path %></li>
-  <li><%= link_to "Ingredients", admin_ingredients_path %></li>
-  <li><%= link_to "Users", admin_users_path %></li>
-</ul>
+<h1>Current orders</h1>
+<% Order.all.each do |o| %>
+	<div class="section" style="float: left; padding-top: 5px;">
+			<table class="orders_list" style="width: 100%;">	
+				<thead>
+					<th>First name</th>
+					<th>Surname</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Email</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= o.firstName %></td>
+						<td><%= o.surname %></td>
+						<td><%= o.address %></td>
+						<td><%= o.phone %></td>
+						<td><%= o.email %></td>
+						<td>
+							<%= link_to('Details', admin_order_path(o.id)) %>
+							<%= link_to('Finish', admin_order_path(o.id)) %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+<% end %>

@@ -6,7 +6,7 @@ body, p, ol, ul, td {
 
 .menu{
 	position: absolute;
-	bottom: 0px
+	bottom: 0px;
 }
 
 body,html{
@@ -43,7 +43,7 @@ div{
 	height: 40px;
 }
 
-#header_content{
+#header_content,#footer_content{
 	height: 100%;
 	width: 800px;
 	margin: 0px auto 0px auto;
@@ -61,6 +61,10 @@ div{
 	padding: 0px 10px 10px 10px;
 	margin: 5px;
 	width: 748px;
+}
+
+.orders_list td{
+	text-align: center;
 }
 
 ul.highlighted_list{
@@ -94,6 +98,12 @@ a.menu_link{
 }
 
 a.menu_link:hover{
+	background-color: orange;
+}
+
+a.standard_button{
+	padding: 5px;
+	border: 1px solid black;
 	background-color: orange;
 }
 
