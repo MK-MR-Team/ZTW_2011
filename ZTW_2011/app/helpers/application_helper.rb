@@ -5,4 +5,8 @@ module ApplicationHelper
     gr = zl.slice!(-2..-1)
     zl + "," + gr + " zl"
   end
+
+  def time_format
+    "%D %T"
+  end
 end

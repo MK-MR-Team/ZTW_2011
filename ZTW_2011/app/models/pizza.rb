@@ -3,12 +3,6 @@ class Pizza < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :order
 
-  @@default_ingredients = ["Cheese", "Tomato sauce"]
-
-  def Pizza.default_ingredients
-    @@default_ingredients
-  end
-
   #Zwraca prawdziwa liste skladnikow pizzy, razem te z przepisu i z dodanych skladnikow
   #pizza.ingredients nie powinno byc uzywane
   def all_ingredients

@@ -20,7 +20,6 @@
 						</tr>
 						<tr>
 							<td style="font-style: italic; font-size: 11px; width: 60%;"> <b>Ingredients:</b>
-                                                        <%= Pizza.default_ingredients[0]+', '+Pizza.default_ingredients[1] +','-%>
 							<% pizza.all_ingredients.each do |ingredient| %>
 								<%= ingredient.name%>,
 							<% end %>

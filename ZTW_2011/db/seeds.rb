@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+cheese = Ingredient.create(:name => 'Cheese', :price => 0, :basic => true)
+tomato_sauce = Ingredient.create(:name => 'Tomato sauce', :price => 0, :basic => true)
 mushroom = Ingredient.create(:name => 'mushroom', :price => 200)
 onion = Ingredient.create(:name => 'onion', :price => 250)
 corn = Ingredient.create(:name => 'corn', :price => 300)
@@ -28,11 +30,26 @@ User.create(
   :address => "ul. Dluga St. 71, 53-045 Wroclaw",
   :phone => "07112345678",
   :admin => true)
+User.create(
+  :login => "marcin",
+  :password => "marcin",
+  :password_confirmation => "marcin",
+  :firstName => "Marcin",
+  :surname => "Kosinski",
+  :address => "ul. Gradowa 12/2 53-028 Wroclaw",
+  :phone => "606317115",
+  :email => "kosinski.marcin@gmail.com")
 order1 = Order.create(
 	:firstName  => 'Jacek',
 	:surname => 'Domek',
-	:address => 'Wrocław 23-324, ul. Kapajaka 12/12',
+	:address => 'Wroclaw 23-324, ul. Kapajaka 12/12',
 	:email => 'asdas@wa.pl',
 	:phone => '432522634'
 )
-order1.pizzas << Recipe.pizzas.new
+pizza1 = Pizza.new
+pizza1.recipe = margerita
+pizza2 = Pizza.new
+pizza2.recipe = funghi
+order1.pizzas << pizza1
+order1.pizzas << pizza2
+order1.save

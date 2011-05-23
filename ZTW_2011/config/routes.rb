@@ -12,7 +12,7 @@ ZTW2011::Application.routes.draw do
   end
   namespace "admin" do
     resources :ingredients, :pizzas, :recipes, :users
-	resources :orders, :only => [:show, :update]
+	  resources :orders, :only => [:show, :update]
   end
   match 'forbidden' => "root#forbidden", :as => :forbidden
   match 'kontakt' => "root#kontakt"

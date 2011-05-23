@@ -119,3 +119,19 @@ input[type = submit]:hover{
 	text-decoration: underline;	
 }
 
+.pizzas_list ul {
+    list-style-type: none
+}
+.pizzas_list fieldset {
+    width: 50%
+}
+.pizzas_list fieldset table {
+    width: 100%;
+}
+.pizzas_list fieldset tr + tr td {
+    font-size: smaller;
+    font-style: italic;
+}
+.pizzas_list fieldset tr td + td {
+    text-align: right
+}

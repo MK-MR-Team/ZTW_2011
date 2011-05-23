@@ -5,6 +5,11 @@ class Recipe < ActiveRecord::Base
   validates :name, :uniqueness => true
   validates :price, :presence => true
 
+  def before_create
+    basic_ingredients = Ingredient.where(:basic => true)
+    self.ingredients << basic_ingredients
+  end
+
   def other_ingredients
     temp_ingredients = self.ingredients
     Ingredient.all - temp_ingredients

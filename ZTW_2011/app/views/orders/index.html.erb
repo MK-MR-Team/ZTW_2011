@@ -1,11 +1,50 @@
 <h1>My orders</h1>
 <% if @user_logged then %>
-  <table>
-    <% @orders.each do |o| %>
-    <tr><td><%= o.created_at%></td></tr>
-    <% end %>
-    <tr><td>todo: wyswietlenie napisu obrazujacego stan zamowienia</td></tr>
-  </table>
+  <% @orders.each do |o| %>
+    <div class="section">
+      <table>
+        <thead>
+          <th>Order time</th>
+          <th>Price</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= o.created_at.strftime(time_format)%></td>
+            <td><%= format_price(o.price) %></td>
+            <td><%= o.status %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pizzas_list">
+        <p><strong>Pizzas</strong></p>
+        <ul>
+          <% o.pizzas.each do |p| %>
+            <li>
+              <fieldset>
+                <table>
+                  <tr>
+                    <td><strong><%= p.recipe.name %></strong></td>
+                    <td><%= format_price(p.price) %></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ingredients:</strong></td>
+                    <td>
+                      <% p.all_ingredients.each do |i| %>
+                        <%= i.name + "," -%>
+                      <% end %>
+                    </td>
+                  </tr>
+
+
+                </table>
+              </fieldset>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+  <% end %>
 <% else %>
 <p>Login or register and you will be able to track the state of your orders on this site.</p>
 <% end %>

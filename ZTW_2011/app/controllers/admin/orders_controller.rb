@@ -8,8 +8,8 @@ class Admin::OrdersController < AdminController
   # PUT /orders/1
   def update
     @order = Order.find(params[:id])
-	@order.finishTime = date_now
- 	render :action => 'show'
+    @order.finishTime = DateTime.now
+    render :action => 'show'
   end
 
 end

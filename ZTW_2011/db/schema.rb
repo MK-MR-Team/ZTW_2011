@@ -10,19 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425162327) do
+ActiveRecord::Schema.define(:version => 20110523214205) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "basic"
   end
 
   create_table "orders", :force => true do |t|
-    t.time     "startTime"
-    t.time     "deliveryTime"
-    t.time     "finishTime"
+    t.datetime "finishTime"
     t.boolean  "wasPaid"
     t.datetime "created_at"
     t.datetime "updated_at"

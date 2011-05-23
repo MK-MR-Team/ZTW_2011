@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     redirect_to :controller => "root", :action => "index"
   end
+  
 end

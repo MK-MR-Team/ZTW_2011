@@ -7,5 +7,5 @@
 	</ul>
 </div>
 <div style="width: 30%; padding: 5px; float: left; border: 1px solid black">
-	<%= link_to('Zrealizowne', '/admin', :class => 'standard_button') %>
+	<%= link_to(@order.status, admin_path, :class => 'standard_button') %>
 </div>

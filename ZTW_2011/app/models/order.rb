@@ -15,5 +15,13 @@ class Order < ActiveRecord::Base
     end
     price
   end
+
+  def finished?
+    finishTime != nil
+  end
+
+  def status
+    finished? ? "Realized" : "Ordered"
+  end
   
 end

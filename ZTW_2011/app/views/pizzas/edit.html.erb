@@ -7,17 +7,15 @@
       <fieldset>
         <legend>Base ingredients</legend>
         <table width="100%">
-          <% Pizza.default_ingredients.each do |i|%>
-            <tr>
-              <td><%= i %></td>
-              <td></td>
-            </tr>
-          <% end %>
           <% @pizza.recipe.ingredients.each do |i| %>
             <tr>
               <% if @pizza.all_ingredients.include?(i) then %>
                 <td><%= i.name %></td>
-                <td><%= link_to 'Remove', pizza_path(@index,:ingredient => i.id), :method => :put %></td>
+                <td>
+                  <% if !i.basic%>
+                    <%= link_to 'Remove', pizza_path(@index,:ingredient => i.id), :method => :put %>
+                  <% end %>
+                </td>
               <% else %>
                 <td><strike><%= i.name %></strike></td>
                 <td><%= link_to 'Restore', pizza_path(@index,:ingredient => i.id), :method => :put %></td>
